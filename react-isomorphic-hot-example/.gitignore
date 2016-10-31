@@ -1,0 +1,8 @@
+.idea/
+node_modules/
+*.log
+*.map
+stats.generated.json
+.DS_Store
+dist/*
+static/dist/*
