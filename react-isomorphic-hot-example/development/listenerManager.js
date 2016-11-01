@@ -29,12 +29,12 @@ class ListenerManager {
             if (this.listener) {
                 this.killAllConnections();
 
-                console.log('Destroyed all existing connections.');
+                console.log('💔  Destroyed all existing connections.');
 
                 this.listener.close(() => {
                     this.killAllConnections();
 
-                    console.log('Closed listener.');
+                    console.log('💔  Closed server.');
                     resolve();
                 });
 
