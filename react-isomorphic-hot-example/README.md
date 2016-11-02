@@ -83,6 +83,7 @@ Production
 ###`hot reload`流程<a name="development"></a>
 
 开发模式下，服务器渲染react同构直出，比纯静态的react的热加载更加复杂，需要分三种情况更新代码。
+
 1. 修改client代码。本例通过`WebpackDevServer`配合`react-hot-loader3`
 2. 修改server代码。server代码修改后，杀死所有与客户端的连接，关闭server，通过webpack重新编译代码，重新打开server
 3. 修改公共的代码。同时进行上面两个步骤
