@@ -19,9 +19,6 @@
     "build-server": "webpack --display-error-details --config ./webpack.server.js",
     "build-client": "webpack --display-error-details --config ./webpack.client.js",
     "build": "npm run build-client && npm run build-server",
-    "dev-server": "webpack --display-error-details --config ./webpack.server.js",
-    "dev-client": "webpack --display-error-details --config ./webpack.client.js",
-    "dev": "npm run dev-client && npm run dev-server",
     "clean": "rm -rf ./dist/* && rm -rf ./static/dist/*",
     "linc": "git diff --name-only --diff-filter=ACMRTUB `git merge-base HEAD master` | grep '\\.js$'"
   },

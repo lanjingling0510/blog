@@ -23,10 +23,6 @@
     "__DEV__": true,
     "__PRODUCTION__": true,
     "__SERVER__": true,
-    "__DEV_HOST__": true,
-    "fetchGet": true,
-    "fetchPost": true,
-    "fetchDelete": true,
   },
   "rules": {
     "react/jsx-uses-react": 2,
