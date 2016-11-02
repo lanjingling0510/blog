@@ -1,9 +1,9 @@
-
+import './css/reset.css';
 import './css/home.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from '../shared/page/Home';
-import ReactHotLoader from '../component/ReactHotLoader';
+import ReactHotLoader from '../shared/component/ReactHotLoader';
 const container = document.getElementById('react-container');
 
 function renderApp(TheApp) {

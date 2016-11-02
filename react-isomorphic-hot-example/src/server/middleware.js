@@ -4,7 +4,7 @@ import conditional from 'koa-conditional-get';
 import views from 'koa-views';
 import controller from './controller.js';
 import logger from './utils/logger.js';
-import { JsonError } from './utils/serverError.js';
+import { JsonError, PageError } from './utils/serverError.js';
 import path from 'path';
 
 const templatePath = path.join(__dirname, './templates');
@@ -25,7 +25,8 @@ export default function middlewreRegister(app) {
         } catch (e) {
             let status = e.status || 500;
             let message = e.message || '服务器错误';
-            if (e instanceof JsonError) { // 错误是 json 错误
+            if (e instanceof JsonError
+                || e instanceof PageError) { // 错误是 json or page 错误
                 ctx.body = {
                     status,
                     message,

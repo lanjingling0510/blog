@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import koaRouter from 'koa-router';
 import { match, RouterContext } from 'react-router';
 import render from './utils/render.js';
+import { PageError } from './utils/serverError.js';
 
 const router = new koaRouter();
 
@@ -24,6 +25,14 @@ async function accountRouter (ctx) {
     const routes = Account;
     return new Promise((resolve) => {
         match({ routes, location: ctx.request.path }, (error, redirectLocation, renderProps) => {
+            if (error) {
+                throw new PageError(error.message, 500);
+            }
+
+            if (redirectLocation) {
+                ctx.redirect(302, redirectLocation.pathname + redirectLocation.search);
+            }
+
             if (renderProps) {
                 const reactHtml = renderToString(
                     <RouterContext {...renderProps} />
@@ -42,5 +51,13 @@ async function accountRouter (ctx) {
     });
 }
 
+//404
+async function notFoundRouter (ctx) {
+    return ctx.render('404');
+}
+
 router.get('/', homeRouter);
 router.get('/account/:type', accountRouter);
+router.get('/404', notFoundRouter);
+
+export default router;

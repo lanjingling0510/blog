@@ -8,8 +8,10 @@ import Information from '../component/Information';
  */
 const router = (
     <Router>
-        <Route path="avatar" component={Avatar} />
-        <Route path="information" component={Information} />
+        <Route path="/account">
+            <Route path="avatar" component={Avatar} />
+            <Route path="information" component={Information} />
+        </Route>
     </Router>
 );
 

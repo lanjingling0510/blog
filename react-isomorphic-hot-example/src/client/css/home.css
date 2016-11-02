@@ -1,0 +1,20 @@
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('../../shared/image/home.png') no-repeat;
+    background-size: cover;
+    padding: 1rem;
+    width: 800px;
+    height: 400px;
+    border: solid 1px #eee;
+}
+
+a {
+    position: absolute;
+    color: #fff;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

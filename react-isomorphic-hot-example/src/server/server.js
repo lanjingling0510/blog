@@ -1,7 +1,6 @@
 
 import Koa from 'koa';
-import '../client/core/fetch_core.js';
-import logger from './js/logger.js';
+import logger from './utils/logger.js';
 import middlewareRegister from './middleware.js';
 
 const app = new Koa();

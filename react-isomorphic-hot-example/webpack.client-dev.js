@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const validate = require('webpack-validator');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
+const AssetsPlugin = require('assets-webpack-plugin');
 const babelrc = require('./babel.config.js').dev_client;
 
 const config = {
@@ -62,6 +63,10 @@ const config = {
 			minChunks: Infinity
 		}),
         new webpack.HotModuleReplacementPlugin(),
+        new AssetsPlugin({
+			filename: 'stats.generated.json',
+			path: path.join(__dirname),
+		}),
         //提取Loader定义到同一地方
         new webpack.LoaderOptionsPlugin({
             minimize: false,
@@ -77,17 +82,7 @@ const config = {
                         }),
                         require('postcss-url')(),
                         require('postcss-cssnext')({
-                            browsers: [
-                                'ie >= 9',
-                                'ie_mob >= 10',
-                                'ff >= 30',
-                                'chrome >= 33',
-                                'safari >= 6',
-                                'opera >= 23',
-                                'ios >= 7',
-                                'android >= 4.4',
-                                'bb >= 10'
-                            ]
+                            browsers: ['Chrome >= 34', '> 5%', 'last 5 versions']
                         }),
                         require('postcss-nested')()
                     ];

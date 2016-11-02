@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const AssetsPlugin = require('assets-webpack-plugin');
 const babelrc = require('./babel.config.js').production_client;
 
 module.exports = {
@@ -67,6 +68,10 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin('[name].[contenthash].css'),
+        new AssetsPlugin({
+			filename: 'stats.generated.json',
+			path: path.join(__dirname),
+		}),
         //提取Loader定义到同一地方
         new webpack.LoaderOptionsPlugin({
             minimize: true,
@@ -82,17 +87,7 @@ module.exports = {
                         }),
                         require('postcss-url')(),
                         require('postcss-cssnext')({
-                            browsers: [
-                                'ie >= 9',
-                                'ie_mob >= 10',
-                                'ff >= 30',
-                                'chrome >= 33',
-                                'safari >= 6',
-                                'opera >= 23',
-                                'ios >= 7',
-                                'android >= 4.4',
-                                'bb >= 10'
-                            ]
+                            browsers: ['Chrome >= 34', '> 5%', 'last 5 versions']
                         }),
                         require('postcss-nested')()
                     ];
