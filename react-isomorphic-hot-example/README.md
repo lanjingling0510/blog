@@ -88,4 +88,4 @@ Production
 2. 修改server代码。server代码修改后，杀死所有与客户端的连接，关闭server，通过webpack重新编译代码，重新打开server
 3. 修改公共的代码。同时进行上面两个步骤
 
-![development](https://www.processon.com/chart_image/5819f98ae4b06e7dcfd83e38.png)
+![development](https://raw.githubusercontent.com/lanjingling0510/blog/master/react-isomorphic-hot-example/.github/development.png)
