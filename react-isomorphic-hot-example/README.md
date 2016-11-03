@@ -33,7 +33,7 @@
 ```script
     git clone https://github.com/lanjingling0510/blog.git
     cd ./blog/react-isomorphic-hot-example
-    yarn
+    yarn install --no-lockfile
 ```
 
 Development
