@@ -4,7 +4,7 @@ import logger from './utils/logger.js';
 import middlewareRegister from './middleware.js';
 
 const app = new Koa();
-const hostname = process.env.HOSTNAME || '0.0.0.0';
+const hostname = process.env.HOSTNAME || '127.0.0.1';
 const port = process.env.PORT || 8000;
 
 // Middleware

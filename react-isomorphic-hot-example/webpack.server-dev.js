@@ -13,7 +13,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, './dist'),
         filename: 'server.js',
-        publicPath: 'http://0.0.0.0:8080/dist/',
+        publicPath: 'http://127.0.0.1:8080/dist/',
         libraryTarget: 'commonjs2'
     },
     plugins: [
