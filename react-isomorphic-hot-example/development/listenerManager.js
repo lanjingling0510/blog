@@ -1,3 +1,7 @@
+/**
+ * Class ListenerManager
+ */
+
 class ListenerManager {
     constructor(listener, name) {
         this.name = name || 'listener';

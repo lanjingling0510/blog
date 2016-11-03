@@ -23,7 +23,7 @@ function renderApp(routes) {
 
 renderApp(Account);
 
-// FIXME: browser.js:49 Warning: [react-router] You cannot change <Router routes>; it will be ignored
+// FIXME: [react-router] You cannot change <Router routes>; it will be ignored
 
 // The following is needed so that we can support hot reloading our application.
 if (__DEV__ && module.hot) {
