@@ -15,7 +15,7 @@
     "postcss"
   ],
   "scripts": {
-    "start": "node --harmony ./development/client.js | ./node_modules/.bin/bunyan",
+    "start": "node --harmony ./development/client.js| bunyan -o short",
     "build-server": "webpack --display-error-details --config ./webpack.server.js",
     "build-client": "webpack --display-error-details --config ./webpack.client.js",
     "build": "npm run build-client && npm run build-server",

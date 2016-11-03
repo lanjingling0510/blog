@@ -1,3 +1,28 @@
+const spawn = require('child_process').spawn;
+const through = require('through');
+const path = require('path');
+const fs = require('fs');
+
+const prettyStream = function(args) {
+    args = args || ['-o', 'short'];
+    const bin = path.resolve(path.dirname(require.resolve('bunyan')), '..', 'bin', 'bunyan');
+    const stream = through(function write(data) {
+        this.queue(data);
+    }, function end() {
+        this.queue(null);
+    });
+
+    if (bin && fs.existsSync(bin)) {
+        const formatter = spawn(bin, [
+            '-o', 'short'
+        ], {
+            stdio: [null, process.stdout, process.stderr]
+        });
+        stream.pipe(formatter.stdin);
+    }
+
+    return stream;
+};
 
 let bunyan = require('bunyan'),
     options;
@@ -11,7 +36,7 @@ let bunyan = require('bunyan'),
 
 options = {
     name: 'server',
-    stream: process.stdout,
+    stream: process.stdout.isTTY ? prettyStream() : process.stdout,
     level: 'info'
 };
 
