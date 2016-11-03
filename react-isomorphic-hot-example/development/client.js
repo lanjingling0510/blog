@@ -4,7 +4,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('../webpack.client-dev.js');
 
 const wds = {
-    hostname: '0.0.0.0',
+    hostname: '127.0.0.1',
     port: 8080,
 };
 

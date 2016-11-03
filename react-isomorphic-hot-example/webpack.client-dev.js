@@ -22,7 +22,7 @@ const config = {
         path: path.join(__dirname, './static/dist'),
         filename: '[name].js',
         chunkFilename: '[name].min.js',
-        publicPath: 'http://0.0.0.0:8080/dist/'
+        publicPath: 'http://127.0.0.1:8080/dist/'
     },
     module: {
         loaders: [
