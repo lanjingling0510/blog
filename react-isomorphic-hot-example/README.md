@@ -69,10 +69,11 @@ Production
 │   ├── dist                   // 编译后生成client代码的路径
 │   └── favicon.png
 ├── stats.generated.json
-├── webpack.client-dev.js      // 开发模式下客户端webpack配置
-├── webpack.client.js          // 生产模式下客户端webpack配置
-├── webpack.server-dev.js      // 开发模式下服务器webpack配置
-├── webpack.server.js          // 生产模式下服务器webpack配置
+├── config     // webpack配置
+│   ├── webpack.client-dev.js      // 开发模式下客户端webpack配置
+│   ├── webpack.client.js          // 生产模式下客户端webpack配置
+│   ├── webpack.server.js          // 生产模式下服务器webpack配置
+│   └── webpack.server-dev.js      // 开发模式下服务器webpack配置
 └── yarn.lock
 
 ```
