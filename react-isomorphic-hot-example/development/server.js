@@ -5,7 +5,7 @@
  * ------------------------------------------------------------ */
 
  const webpack = require('webpack');
- const webpackConfig = require('../webpack.server-dev.js');
+ const webpackConfig = require('../config/webpack.server-dev.js');
  const chokidar = require('chokidar');
  const ListenerManager = require('./listenerManager.js');
  const compiler  = webpack(webpackConfig);

@@ -1,7 +1,7 @@
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('../webpack.client-dev.js');
+const webpackConfig = require('../config/webpack.client-dev.js');
 
 const wds = {
     hostname: '127.0.0.1',

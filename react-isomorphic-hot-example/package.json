@@ -16,8 +16,8 @@
   ],
   "scripts": {
     "start": "node --harmony ./development/client.js| bunyan -o short",
-    "build-server": "webpack --display-error-details --config ./webpack.server.js",
-    "build-client": "webpack --display-error-details --config ./webpack.client.js",
+    "build-server": "webpack --display-error-details --config ./config/webpack.server.js",
+    "build-client": "webpack --display-error-details --config ./config/webpack.client.js",
     "build": "npm run build-client && npm run build-server",
     "clean": "rm -rf ./dist/* && rm -rf ./static/dist/*",
     "linc": "git diff --name-only --diff-filter=ACMRTUB `git merge-base HEAD master` | grep '\\.js$'"

@@ -36,7 +36,7 @@ let bunyan = require('bunyan'),
 
 options = {
     name: 'server',
-    stream: process.stdout.isTTY ? prettyStream() : process.stdout,
+    stream: (process.stdout.isTTY && __DEV__) ? prettyStream() : process.stdout,
     level: 'info'
 };
 

@@ -1,25 +1,27 @@
 const webpack = require('webpack');
-const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const babelrc = require('./babel.config.js').production_client;
+const babelrc = require('../babel.config.js').production_client;
+const ROOT_PATH = process.cwd();
 
 module.exports = {
     target: 'web',
     cache: false,
     devtool: false,
+    context: ROOT_PATH + '/src',
     entry: {
         vendor: [
-            'react', 'react-dom'
+            'react',
+			'react-dom'
         ],
-        home: './src/client/home',
-        account: './src/client/account'
+        home: './client/home',
+        account: './client/account'
     },
     output: {
-        path: path.join(__dirname, './static/dist'),
+        path: ROOT_PATH + '/static/dist',
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].min.js',
         publicPath: '/dist/'
@@ -70,7 +72,7 @@ module.exports = {
         new ExtractTextPlugin('[name].[contenthash].css'),
         new AssetsPlugin({
 			filename: 'stats.generated.json',
-			path: path.join(__dirname),
+			path: ROOT_PATH,
 		}),
         //提取Loader定义到同一地方
         new webpack.LoaderOptionsPlugin({

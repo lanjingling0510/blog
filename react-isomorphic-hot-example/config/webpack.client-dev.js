@@ -1,25 +1,26 @@
 const webpack = require('webpack');
-const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const validate = require('webpack-validator');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const babelrc = require('./babel.config.js').dev_client;
+const babelrc = require('../babel.config.js').dev_client;
+const ROOT_PATH = process.cwd();
 
 const config = {
     target: 'web',
 	devtool: 'eval',
+    context: ROOT_PATH + '/src',
     entry: {
         vendor: [
             'react',
 			'react-dom'
         ],
-        home: './src/client/home',
-        account: './src/client/account'
+        home: './client/home',
+        account: './client/account'
     },
     output: {
-        path: path.join(__dirname, './static/dist'),
+        path: ROOT_PATH + '/static/dist',
         filename: '[name].js',
         chunkFilename: '[name].min.js',
         publicPath: 'http://127.0.0.1:8080/dist/'
@@ -65,7 +66,7 @@ const config = {
         new webpack.HotModuleReplacementPlugin(),
         new AssetsPlugin({
 			filename: 'stats.generated.json',
-			path: path.join(__dirname),
+			path: ROOT_PATH,
 		}),
         //提取Loader定义到同一地方
         new webpack.LoaderOptionsPlugin({
