@@ -9,6 +9,7 @@ module.exports = {
             "react-hot-loader/babel",
             "transform-decorators-legacy",
         ],
+        "cacheDirectory": "./webpack_cache/"
     },
 
     dev_server: {

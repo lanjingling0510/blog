@@ -93,7 +93,12 @@ const config = {
     ],
     resolve: {
         modulesDirectories: ['node_modules'],
-        extensions: ['', '.json', '.js', '.jsx']
+        extensions: ['', '.json', '.js', '.jsx'],
+        alias: {
+            'react': 'react/dist/react.min',
+            'react-dom': 'react-dom/dist/react-dom.min',
+            'react-router': 'react-router/umd/ReactRouter',
+        },
     },
 	node: {
         __dirname: true,

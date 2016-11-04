@@ -6,3 +6,4 @@ stats.generated.json
 .DS_Store
 dist/*
 static/dist/*
+webpack_cache/
