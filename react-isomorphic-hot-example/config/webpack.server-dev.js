@@ -26,18 +26,21 @@ module.exports = {
                 NODE_ENV: '"development"'
             }
         }),
-        // 在服务器端添加source-map支持
+
+        // NOTE: 在服务器端添加source-map支持
         new webpack.BannerPlugin({
           raw: true,
           banner: 'require("source-map-support").install();'
         }),
     ],
+
+    resolveLoader: {
+      moduleExtensions: ['-loader']
+    },
+
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.json$/,
-                loaders: ['json']
-            }, {
                 test: /\.(ico|gif|png|jpg|jpeg|svg|webp)$/,
                 loader: 'url?limit=10000',
                 exclude: /node_modules/
@@ -45,18 +48,25 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel',
-                query: babelrc
+                options: babelrc
             }
         ],
     },
+
     // in order to ignore all modules in node_modules folder
     externals: [nodeExternals({})],
-    resolve: {
-        modulesDirectories: ['node_modules'],
-        extensions: ['', '.json', '.js', '.jsx']
+
+	resolve: {
+      modules: ['node_modules'],
+      extensions: [
+        '.json', '.js', '.jsx',
+      ],
     },
+
     node: {
         __dirname: true,
-        fs: 'empty'
-    }
+		fs: 'empty',
+	    net: 'empty',
+	    tls: 'empty'
+    },
 };

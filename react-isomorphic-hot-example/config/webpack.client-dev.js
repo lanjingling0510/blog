@@ -1,15 +1,15 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const validate = require('webpack-validator');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const babelrc = require('../babel.config.js').dev_client;
+
 const ROOT_PATH = process.cwd();
 
 const config = {
     target: 'web',
-	devtool: 'eval',
+	devtool: 'cheap-module-eval-source-map',
     context: ROOT_PATH + '/src',
     entry: {
         vendor: [
@@ -19,31 +19,41 @@ const config = {
         home: './client/home',
         account: './client/account'
     },
+
     output: {
         path: ROOT_PATH + '/static/dist',
         filename: '[name].js',
         chunkFilename: '[name].min.js',
         publicPath: 'http://127.0.0.1:8080/dist/'
     },
+
+    resolve: {
+      modules: ['node_modules'],
+      extensions: [
+        '.json', '.js', '.jsx',
+      ],
+    },
+
+    resolveLoader: {
+      moduleExtensions: ['-loader']
+    },
+
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.json$/,
-                loaders: ['json']
-            }, {
                 test: /\.(png|jpg|jpeg|gif|webp)$/i,
                 loader: 'url?limit=10000'
             }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
+                    fallbackLoader: 'style',
                     loader: ['css', 'postcss']
                 })
             }, {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: babelrc
+                loader: 'babel',
+                options: babelrc
             }
         ],
     },
@@ -57,17 +67,25 @@ const config = {
                 NODE_ENV: '"development"'
             }
         }),
+
         new ExtractTextPlugin('[name].css'),
+
         new CommonsChunkPlugin({
 			name: 'vendor',
 			filename: 'vendor.js',
 			minChunks: Infinity
 		}),
+
         new webpack.HotModuleReplacementPlugin(),
+
+        // prints more readable module names in the browser console on HMR updates
+        new webpack.NamedModulesPlugin(),
+
         new AssetsPlugin({
 			filename: 'stats.generated.json',
 			path: ROOT_PATH,
 		}),
+
         //提取Loader定义到同一地方
         new webpack.LoaderOptionsPlugin({
             minimize: false,
@@ -91,19 +109,18 @@ const config = {
             }
         }),
     ],
-    resolve: {
-        modulesDirectories: ['node_modules'],
-        extensions: ['', '.json', '.js', '.jsx'],
-        alias: {
-            'react': 'react/dist/react.min',
-            'react-dom': 'react-dom/dist/react-dom.min',
-            'react-router': 'react-router/umd/ReactRouter',
-        },
-    },
-	node: {
-        __dirname: true,
-        fs: 'empty'
+
+    // Ensure that webpack polyfills the following node features for use
+    // within any bundles that are targetting node as a runtime. This will be
+    // ignored otherwise.
+    node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      __dirname: true,
+      __filename: true,
     }
+
 };
 
 Object.keys(config.entry).forEach((key) => {
@@ -118,5 +135,4 @@ Object.keys(config.entry).forEach((key) => {
 	];
 });
 
-//用于webpack配置验证
-module.exports = validate(config);
+module.exports = config;
