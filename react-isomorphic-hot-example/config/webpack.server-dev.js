@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const fs = require('fs');
 const babelrc = require('../babel.config.js').dev_server;
 const ROOT_PATH = process.cwd();
@@ -32,6 +33,14 @@ module.exports = {
           raw: true,
           banner: 'require("source-map-support").install();'
         }),
+
+        // The FriendlyErrorsWebpackPlugin (when combined with source-maps)
+        // gives Backpack its human-readable error messages.
+        new FriendlyErrorsWebpackPlugin(),
+        // This plugin is awkwardly named. It does not actually swallow errors.
+        // Instead, it just prevents Webpack from printing out compile time
+        // stats to the console.
+        new webpack.NoErrorsPlugin()
     ],
 
     resolveLoader: {

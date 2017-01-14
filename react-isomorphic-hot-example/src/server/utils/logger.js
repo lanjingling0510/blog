@@ -3,9 +3,10 @@ const through = require('through');
 const path = require('path');
 const fs = require('fs');
 
-const prettyStream = function(args) {
-    args = args || ['-o', 'short'];
-    const bin = path.resolve(path.dirname(require.resolve('bunyan')), '..', 'bin', 'bunyan');
+function prettyStream () {
+
+    const bin = path.resolve('node_modules', 'bunyan', 'bin', 'bunyan');
+
     const stream = through(function write(data) {
         this.queue(data);
     }, function end() {
@@ -22,7 +23,7 @@ const prettyStream = function(args) {
     }
 
     return stream;
-};
+}
 
 let bunyan = require('bunyan'),
     options;
