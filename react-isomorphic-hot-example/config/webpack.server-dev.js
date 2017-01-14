@@ -7,8 +7,7 @@ const ROOT_PATH = process.cwd();
 module.exports = {
     // in order to ignore built-in modules like path, fs, etc.
     target: 'node',
-    cache: true,
-    debug: true,
+    devtool: 'source-map',
     context: ROOT_PATH + '/src',
     entry: './server/index',
     output: {
@@ -26,6 +25,11 @@ module.exports = {
             'process.env': {
                 NODE_ENV: '"development"'
             }
+        }),
+        // 在服务器端添加source-map支持
+        new webpack.BannerPlugin({
+          raw: true,
+          banner: 'require("source-map-support").install();'
         }),
     ],
     module: {

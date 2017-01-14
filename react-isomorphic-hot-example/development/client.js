@@ -27,7 +27,6 @@ bundler.listen(wds.port, wds.hostname, () => {
 });
 
 compiler.plugin('done', () => {
-    debugger;
     console.log('🚀 😝  Build client bundle done.');
     require('./server.js');
 });
