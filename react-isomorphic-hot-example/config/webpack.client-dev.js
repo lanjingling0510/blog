@@ -13,6 +13,7 @@ const config = {
     context: ROOT_PATH + '/src',
     entry: {
         vendor: [
+            'react-hot-loader/patch',
             'react',
 			'react-dom'
         ],
@@ -128,7 +129,6 @@ Object.keys(config.entry).forEach((key) => {
     if (key === 'vendor') return;
     config.entry[key] =
 	[
-		'react-hot-loader/patch',
 		'webpack-dev-server/client?http://127.0.0.1:8080',
 		'webpack/hot/only-dev-server',
 		_entry

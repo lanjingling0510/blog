@@ -10,11 +10,17 @@ const container = document.getElementById('react-container');
 const { pathname, search } = window.location;
 const location = `${pathname}${search}`;
 
+const referenctiallyEqualRootRoute = {};
+
 function renderApp(routes) {
-    match({ routes, location }, () => {
+
+    // FIXED: [react-router] You cannot change <Router routes>; it will be ignored
+    const newRoutes = Object.assign(referenctiallyEqualRootRoute, routes);
+
+    match({ routes: newRoutes, location }, () => {
         ReactDOM.render(
             <ReactHotLoader>
-                <Router routes={routes} history={browserHistory} />
+                <Router routes={newRoutes} history={browserHistory} />
             </ReactHotLoader>,
             container
         );
@@ -22,8 +28,6 @@ function renderApp(routes) {
 }
 
 renderApp(Account);
-
-// FIXME: [react-router] You cannot change <Router routes>; it will be ignored
 
 // The following is needed so that we can support hot reloading our application.
 if (__DEV__ && module.hot) {
