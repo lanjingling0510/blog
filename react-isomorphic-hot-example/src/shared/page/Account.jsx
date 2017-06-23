@@ -1,18 +1,19 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
-import Avatar from '../component/Avatar';
-import Information from '../component/Information';
+import { Route } from 'react-router-dom';
+import Dynamic from '../utils/dynamic';
 
 /**
  * The React Router routes for both the server and the client.
  */
-const router = (
-    <Router>
-        <Route path="/account">
-            <Route path="avatar" component={Avatar} />
-            <Route path="information" component={Information} />
-        </Route>
-    </Router>
+
+ const Avatar = Dynamic({loader: () => import(/* webpackChunkName: 'avatar' */ '../component/Avatar.jsx')});
+ const Information = Dynamic({loader: () => import(/* webpackChunkName: 'information' */ '../component/Information.jsx')});
+
+const Account = () => (
+    <div>
+        <Route path="/account/avatar" exact component={Avatar} />
+        <Route path="/account/information" exact component={Information} />
+    </div>
 );
 
-export default router;
+export default Account;

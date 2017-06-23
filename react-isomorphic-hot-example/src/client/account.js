@@ -3,28 +3,22 @@ import './css/account.css';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Account from '../shared/page/Account';
-import { Router, browserHistory, match } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import ReactHotLoader from '../shared/component/ReactHotLoader';
 
 const container = document.getElementById('react-container');
 const { pathname, search } = window.location;
 const location = `${pathname}${search}`;
 
-const referenctiallyEqualRootRoute = {};
-
-function renderApp(routes) {
-
-    // FIXED: [react-router] You cannot change <Router routes>; it will be ignored
-    const newRoutes = Object.assign(referenctiallyEqualRootRoute, routes);
-
-    match({ routes: newRoutes, location }, () => {
-        ReactDOM.render(
-            <ReactHotLoader>
-                <Router routes={newRoutes} history={browserHistory} />
-            </ReactHotLoader>,
-            container
-        );
-    });
+function renderApp(Account) {
+    ReactDOM.render(
+        <ReactHotLoader>
+            <BrowserRouter>
+                <Account />
+            </BrowserRouter>
+        </ReactHotLoader>,
+        container
+    );
 }
 
 renderApp(Account);

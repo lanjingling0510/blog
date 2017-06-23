@@ -8,6 +8,9 @@ module.exports = {
         "plugins": [
             "react-hot-loader/babel",
             "transform-decorators-legacy",
+            ["import-inspector", {
+              "webpackRequireWeakId": true,
+            }]
         ],
         "cacheDirectory": "./webpack_cache/"
     },
@@ -21,6 +24,10 @@ module.exports = {
             "transform-object-rest-spread",
             "transform-class-properties",
             "transform-decorators-legacy",
+            "syntax-dynamic-import",
+            ["import-inspector", {
+              "webpackRequireWeakId": true,
+            }]
         ],
     },
 
@@ -30,7 +37,9 @@ module.exports = {
                 "modules": false
             }], "stage-0", "react"
         ],
-        "plugins": ["transform-decorators-legacy"],
+        "plugins": [
+            "transform-decorators-legacy",
+        ],
     },
 
     production_server: {
@@ -42,6 +51,10 @@ module.exports = {
             "transform-object-rest-spread",
             "transform-class-properties",
             "transform-decorators-legacy",
+            "syntax-dynamic-import",
+            ["import-inspector", {
+              "webpackRequireWeakId": true,
+            }]
         ],
     }
 };

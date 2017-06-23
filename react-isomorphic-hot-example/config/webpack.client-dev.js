@@ -1,11 +1,13 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const babelrc = require('../babel.config.js').dev_client;
 
 const ROOT_PATH = process.cwd();
+// process.traceDeprecation = true;
 
 const config = {
     target: 'web',
@@ -44,13 +46,21 @@ const config = {
             {
                 test: /\.(png|jpg|jpeg|gif|webp)$/i,
                 loader: 'url?limit=10000'
-            }, {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style',
-                    loader: ['css', 'postcss']
-                })
-            }, {
+            },
+            {
+              test: /\.css$/,
+              use: ExtractTextPlugin.extract({
+                fallback: 'style',
+                use: [
+                  {loader: 'css', options: {importLoaders: 1, sourceMap: true}},
+                  {
+                    loader: 'postcss',
+                    options: {config: {path: path.join(__dirname, 'postcss.antd.js')}},
+                  }
+                ],
+              }),
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel',
@@ -69,13 +79,17 @@ const config = {
             }
         }),
 
-        new ExtractTextPlugin('[name].css'),
-
         new CommonsChunkPlugin({
 			name: 'vendor',
 			filename: 'vendor.js',
 			minChunks: Infinity
 		}),
+
+        new ExtractTextPlugin({
+          filename: '[name].css',
+          disable: false,
+          allChunks: true,
+        }),
 
         new webpack.HotModuleReplacementPlugin(),
 
@@ -91,23 +105,6 @@ const config = {
         new webpack.LoaderOptionsPlugin({
             minimize: false,
             debug: true,
-            options: {
-                context: '/',
-                postcss: function(webpack) {
-                    return [
-                        require('postcss-import')({
-                            onImport: function(files) {
-                                files.forEach(this.addDependency);
-                            }.bind(this)
-                        }),
-                        require('postcss-url')(),
-                        require('postcss-cssnext')({
-                            browsers: ['Chrome >= 34', '> 5%', 'last 5 versions']
-                        }),
-                        require('postcss-nested')()
-                    ];
-                }
-            }
         }),
     ],
 

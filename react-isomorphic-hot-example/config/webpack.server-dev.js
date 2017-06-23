@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const fs = require('fs');
@@ -9,8 +10,7 @@ module.exports = {
     // in order to ignore built-in modules like path, fs, etc.
     target: 'node',
     devtool: 'source-map',
-    context: ROOT_PATH + '/src',
-    entry: './server/index',
+    entry: './src/server/index',
     output: {
         path: ROOT_PATH + '/dist',
         filename: 'server.js',
@@ -34,13 +34,17 @@ module.exports = {
           banner: 'require("source-map-support").install();'
         }),
 
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 1
+        }),
+
         // The FriendlyErrorsWebpackPlugin (when combined with source-maps)
         // gives Backpack its human-readable error messages.
         new FriendlyErrorsWebpackPlugin(),
         // This plugin is awkwardly named. It does not actually swallow errors.
         // Instead, it just prevents Webpack from printing out compile time
         // stats to the console.
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
 
     resolveLoader: {
