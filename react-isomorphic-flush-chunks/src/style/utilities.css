@@ -1,0 +1,218 @@
+
+@define-mixin clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.cleafix {
+    @mixin clearfix;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+
+/* theme color */
+
+.primary {
+    color: var(--color-primary);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+.normal {
+    color: #127fc7;
+}
+
+.wrapper {
+    padding: 0 20px;
+}
+
+/* Font-size */
+.font-small {
+    font-size: var(--font-size-small);
+}
+
+.font-normal {
+    font-size: var(--font-size);
+}
+
+.font-large {
+    font-size: var(--font-size-large);
+}
+
+
+
+/* flex  */
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+    min-width: 0;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+.flex-align-end {
+    align-items: flex-end;
+}
+
+.flex-align-start {
+    align-items: flex-start;
+}
+
+.flex-align-self-center {
+    align-self: center;
+}
+
+.flex-align-self-end {
+    align-self: flex-end;
+}
+
+.flex-justify-center {
+    justify-content: center;
+}
+
+.flex-justify-between {
+    justify-content: space-between;
+}
+
+.flex-justify-around {
+    justify-content: space-around;
+}
+
+.flex-justify-end {
+    justify-content: flex-end;
+}
+
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.flex-tern {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*Margin*/
+.margin {margin: var(--edge)}
+.margin-md{margin: var(--edge-md)}
+.margin-lg{margin: var(--edge-lg)}
+
+.margin-left {margin-left: var(--edge)}
+.margin-left-lg{margin-left: var(--edge-lg)}
+.margin-left-sm{margin-left: var(--edge-sm)}
+.margin-left-md{margin-left: var(--edge-md)}
+
+.margin-right {margin-right: var(--edge)}
+.margin-right-lg{margin-right: var(--edge-lg)}
+.margin-right-sm{margin-right: var(--edge-sm)}
+.margin-right-md{margin-right: var(--edge-md)}
+
+.margin-top {margin-top: var(--edge)}
+.margin-top-lg{margin-top: var(--edge-lg)}
+.margin-top-sm{margin-top: var(--edge-sm)}
+.margin-top-md{margin-top: var(--edge-md)}
+
+.margin-bottom {margin-bottom: var(--edge)}
+.margin-bottom-lg{margin-bottom: var(--edge-lg)}
+.margin-bottom-sm{margin-bottom: var(--edge-sm)}
+.margin-bottom-md{margin-bottom: var(--edge-md)}
+
+.margin-vertical {margin-bottom: var(--edge);margin-top: var(--edge)}
+.margin-vertical-lg{margin-bottom: var(--edge-lg);margin-top: var(--edge-lg)}
+.margin-vertical-sm{margin-bottom: var(--edge-sm);margin-top: var(--edge-sm)}
+.margin-vertical-md{margin-bottom: var(--edge-md);margin-top: var(--edge-md)}
+
+/* Padding */
+.padding {padding: var(--edge)}
+.padding-lg{padding: var(--edge-lg)}
+.padding-sm{padding: var(--edge-sm)}
+.padding-md{padding: var(--edge-md)}
+
+.padding-left {padding-left: var(--edge)}
+.padding-left-lg{padding-left: var(--edge-lg)}
+.padding-left-sm{padding-left: var(--edge-sm)}
+.padding-left-md{padding-left: var(--edge-md)}
+.padding-right {padding-right: var(--edge)}
+
+.padding-right-lg{padding-right: var(--edge-lg)}
+.padding-right-sm{padding-right: var(--edge-sm)}
+.padding-right-md{padding-right: var(--edge-md)}
+
+.padding-top {padding-top: var(--edge)}
+.padding-top-lg{padding-top: var(--edge-lg)}
+.padding-top-sm{padding-top: var(--edge-sm)}
+.padding-top-md{padding-top: var(--edge-md)}
+
+.padding-bottom {padding-bottom: var(--edge)}
+.padding-bottom-lg{padding-bottom: var(--edge-lg)}
+.padding-bottom-sm{padding-bottom: var(--edge-sm)}
+.padding-bottom-md{padding-bottom: var(--edge-md)}
+
+.padding-vertical {padding-bottom: var(--edge);padding-top: var(--edge)}
+.padding-vertical-lg{padding-bottom: var(--edge-lg);padding-top: var(--edge-lg)}
+.padding-vertical-sm{padding-bottom: var(--edge-sm);padding-top: var(--edge-sm)}
+.padding-vertical-md{padding-bottom: var(--edge-md);padding-top: var(--edge-md)}

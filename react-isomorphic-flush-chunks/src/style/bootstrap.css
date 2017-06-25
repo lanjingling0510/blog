@@ -1,0 +1,12 @@
+@import './normalize.css';
+@import './variables.css';
+@import './utilities.css';
+
+
+img.emoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
+   margin-right: .5rem;
+}
