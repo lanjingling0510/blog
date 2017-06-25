@@ -15,20 +15,21 @@ if (DEV) {
   const multiCompiler = webpack([clientConfig, serverConfig]);
   const clientCompiler = multiCompiler.compilers[0];
 
-  app.use(webpackDevMiddleware(multiCompiler, {publicPath}));
+  app.use(webpackDevMiddleware(multiCompiler, { publicPath }));
   app.use(webpackHotMiddleware(clientCompiler));
   app.use(
     // keeps serverRender updated with arg: { clientStats, outputPath }
     webpackHotServerMiddleware(multiCompiler, {
-      serverRendererOptions: {outputPath},
-    }),
+      serverRendererOptions: { outputPath }
+    })
   );
-} else {
+}
+else {
   const clientStats = require('../buildClient/stats.json');
   const serverRender = require('../buildServer/main.js').default;
 
   app.use(publicPath, express.static(outputPath));
-  app.use(serverRender({clientStats, outputPath}));
+  app.use(serverRender({ clientStats, outputPath }));
 }
 
 app.listen(3000, () => {

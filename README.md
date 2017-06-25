@@ -12,4 +12,4 @@
 
 ## 总结探索
 
-- [我是如何刷 500+个star在github上](https://github.com/lanjingling0510/blog/issues/4)
+- [我是如何刷500+个star在github上](https://github.com/lanjingling0510/blog/issues/4)
