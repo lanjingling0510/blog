@@ -2,15 +2,15 @@ import React from 'react';
 import universal from 'react-universal-component';
 import { Route } from 'react-router-dom';
 
-const Avatar = universal(() => import(/* webpackChunkName: "avatar" */ './Avatar'), {
+const Avatar = universal(() => import('./Avatar'), {
   resolve: () => require.resolveWeak('./Avatar'),
-  chunkName: 'avatar',
+  chunkName: 'Avatar',
   minDelay: 500
 });
 
-const Information = universal(() => import(/* webpackChunkName: "information" */ './Information'), {
+const Information = universal(() => import('./Information'), {
   resolve: () => require.resolveWeak('./Information'),
-  chunkName: 'information',
+  chunkName: 'Information',
   minDelay: 500
 });
 

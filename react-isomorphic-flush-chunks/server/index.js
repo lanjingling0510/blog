@@ -1,10 +1,10 @@
-import express from 'express';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware-multi-compiler';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackHotServerMiddleware from 'webpack-hot-server-middleware';
-import clientConfig from '../config/client.dev';
-import serverConfig from '../config/server.dev';
+const express = require('express');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware-multi-compiler');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+const clientConfig = require('../config/client.dev');
+const serverConfig = require('../config/server.dev');
 
 const DEV = process.env.NODE_ENV === 'development';
 const publicPath = clientConfig.output.publicPath;

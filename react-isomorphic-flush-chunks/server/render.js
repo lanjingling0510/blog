@@ -5,7 +5,7 @@ import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import App from '../src/components/App';
 
-export default ({ clientStats, outputPath }) => (req, res, next) => {
+export default ({ clientStats, outputPath }) => (req, res) => {
   const context = {};
 
   const app = ReactDOM.renderToString(
@@ -16,31 +16,7 @@ export default ({ clientStats, outputPath }) => (req, res, next) => {
 
   const chunkNames = flushChunkNames();
 
-  const {
-    // react components:
-    Js,
-    Styles, // external stylesheets
-    Css, // raw css
-
-    // strings:
-    js,
-    styles, // external stylesheets
-    css, // raw css
-
-    // arrays of file names (not including publicPath):
-    scripts,
-    stylesheets,
-
-    publicPath
-  } = flushChunks(clientStats, {
-    chunkNames,
-    before: ['bootstrap'],
-    after: ['main'],
-
-    // only needed if serving css rather than an external stylesheet
-    // note: during development css still serves as a stylesheet
-    outputPath
-  });
+  const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
 
   if (context.url) {
     // Somewhere a `<Redirect>` was rendered
@@ -48,8 +24,7 @@ export default ({ clientStats, outputPath }) => (req, res, next) => {
   }
   else {
     console.log('PATH', req.path);
-    console.log('SERVED SCRIPTS', scripts);
-    console.log('SERVED STYLESHEETS', stylesheets);
+    console.log('CHUNK NAMES RENDERED', chunkNames);
 
     res.send(
       `<!doctype html>
@@ -62,7 +37,8 @@ export default ({ clientStats, outputPath }) => (req, res, next) => {
             </head>
             <body>
               <div id="root">${app}</div>
-              ${js}
+             ${js}
+             ${cssHash}
             </body>
           </html>`
     );
