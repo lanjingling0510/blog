@@ -4,6 +4,7 @@
 
 - [深入理解react(源码分析)](https://github.com/lanjingling0510/blog/issues/1)
 - [react服务器渲染下，hot reload解决方案](https://github.com/lanjingling0510/blog/issues/2)
+- [大厂的react架构](https://github.com/lanjingling0510/blog/issues/9)
 
 ## 移动端
 
